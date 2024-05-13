@@ -1,0 +1,8 @@
+screens/ui_LoginScreen.c
+ui.c
+components/ui_comp_hook.c
+ui_helpers.c
+ui_events.c
+images/ui_img_discord_com_login_normal_png.c
+fonts/ui_font_gg_sans_bold.c
+fonts/ui_font_gg_sans_small.c
