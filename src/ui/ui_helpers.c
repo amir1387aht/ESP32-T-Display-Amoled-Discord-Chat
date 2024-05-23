@@ -2,7 +2,6 @@
 // SquareLine Studio version: SquareLine Studio 1.4.0
 // LVGL version: 8.3.11
 // Project name: Discord Login
-
 #include "ui/ui_helpers.h"
 
 void _ui_bar_set_property(lv_obj_t * target, int id, int val)

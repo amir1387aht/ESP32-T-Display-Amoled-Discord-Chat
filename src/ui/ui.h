@@ -11,39 +11,37 @@ extern "C" {
 #endif
 
 #include "lvgl.h"
-
 #include "ui/ui_helpers.h"
 #include "ui/ui_events.h"
 
-// SCREEN: ui_LoginScreen
-void ui_LoginScreen_screen_init(void);
-
-extern lv_obj_t * ui_LoginScreen;
-extern lv_obj_t * ui_Header_Panel;
+void KeyboardShow_Animation(lv_obj_t * TargetObject, int delay);
+void KeyboardHide_Animation(lv_obj_t * TargetObject, int delay);
+// SCREEN: ui_BotKeyScreen
+void ui_BotKeyScreen_screen_init(void);
+extern lv_obj_t * ui_BotKeyScreen;
+extern lv_obj_t * ui_Right_Panel;
+extern lv_obj_t * ui_QrCode;
+extern lv_obj_t * ui_Left_Panel;
 extern lv_obj_t * ui_Header_Text;
 extern lv_obj_t * ui_Discord_Icon;
-extern lv_obj_t * ui_CredentialsForm;
-extern lv_obj_t * ui_EmailOrPhoneInput;
-extern lv_obj_t * ui_Label;
-extern lv_obj_t * ui_Required_Label;
-void ui_event_TextArea(lv_event_t * e);
-extern lv_obj_t * ui_TextArea;
-extern lv_obj_t * ui_PassworInput;
-extern lv_obj_t * ui_Label1;
-extern lv_obj_t * ui_Required_Label1;
-extern lv_obj_t * ui_TextArea1;
-void ui_event_Forgot_Password_Button(lv_event_t * e);
-extern lv_obj_t * ui_Forgot_Password_Button;
-extern lv_obj_t * ui_Forgot_Password;
-void ui_event_ButtonSend(lv_event_t * e);
-extern lv_obj_t * ui_ButtonSend;
-extern lv_obj_t * ui_Label3;
+extern lv_obj_t * ui_Info_Text;
+extern lv_obj_t * ui_Text_1;
+extern lv_obj_t * ui_Text_2;
+extern lv_obj_t * ui_Text_3;
 extern lv_obj_t * ui____initial_actions0;
 
+
+LV_IMG_DECLARE(ui_img_1102433829);    // assets/discord.local-qrcode-img.png
 LV_IMG_DECLARE(ui_img_discord_com_login_normal_png);    // assets/discord.com_login_normal.png
+LV_IMG_DECLARE(ui_img_2132233354);    // assets/icons8-hide-password-30.png
+LV_IMG_DECLARE(ui_img_1618681362);    // assets/icons8-show-password-24.png
+
+
 
 LV_FONT_DECLARE(ui_font_gg_sans_bold);
 LV_FONT_DECLARE(ui_font_gg_sans_small);
+
+
 
 void ui_init(void);
 

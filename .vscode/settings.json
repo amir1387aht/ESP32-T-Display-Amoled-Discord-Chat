@@ -301,12 +301,15 @@
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
-  "cmake.sourceDirectory": "D:/Projects/Arduino Project/Discord Chat/.pio/libdeps/T-Display-AMOLED/lvgl",
+  "cmake.sourceDirectory": "D:/Arduino Project/ESP32-T-Display-Amoled-Discord-Chat/.pio/libdeps/T-Display-AMOLED/lvgl",
   "files.associations": {
     "*.ejs": "html",
+    "*.embeddedhtml": "html",
     ".env*": "dotenv",
     "ui.h": "c",
     "ui_helpers.h": "c",
-    "ui_events.h": "c"
-  }
+    "ui_events.h": "c",
+    "lvgl.h": "c"
+  },
+  "C_Cpp.errorSquiggles": "disabled"
 }

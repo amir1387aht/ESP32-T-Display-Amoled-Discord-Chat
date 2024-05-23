@@ -1,27 +1,34 @@
 #include <scripts/LoginController/LoginController.h>
 
-LoginController::LoginController()
-{
-}
+WebServer server(WebServer_PORT);
+
+IPAddress ip WebServer_IP;
 
 void LoginController::start()
 {
-    amoled.beginAMOLED_191();
-
-    beginLvglHelper(amoled);
-
     ui_init();
 
-    kb = lv_keyboard_create(lv_scr_act());
-    lv_obj_set_size(kb, LV_HOR_RES, LV_VER_RES / 2);
-
-    lv_keyboard_set_textarea(kb, ui_TextArea);
-
-    //lv_example_textarea_2();
+    handleBotKeyPage();
 }
 
 void LoginController::update()
 {
-    lv_task_handler();
-    delay(5);
+    server.handleClient();
+}
+
+void LoginController::handleBotKeyPage()
+{
+    WiFi.softAPConfig(ip, ip, IPAddress(255, 255, 255, 0));
+    WiFi.softAP(WebServer_SSID, WebServer_PASSWORD);
+
+    MDNS.begin(WebServer_DOMAIN_NAME);
+
+    MDNS.addService("http", "tcp", WebServer_PORT);
+
+    server.on("/", []()
+    {
+        server.send(200, "text/html", "<h1>You are connected</h1>");
+    });
+
+    server.begin();
 }

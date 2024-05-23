@@ -1,12 +1,4 @@
-SPIFFS
-bodmer/TFT_eSPI @ 2.5.31
-bxparks/AceButton @ 1.10.1
-lewisxhe/XPowersLib @ 0.2.1
-SD
-Wire
-lewisxhe/SensorLib @ 0.2.0
-FS
-paulstoffregen/OneWire @ ^2.3.8
-WiFi
 lvgl/lvgl @ ~8.3.11
-SPI
+lewisxhe/XPowersLib @ 0.2.1
+bxparks/AceButton @ 1.10.1
+lewisxhe/SensorLib @ 0.2.0

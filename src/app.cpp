@@ -1,13 +1,50 @@
-// This is main file for defining and adding scenes.
-// only Setup function os enough for creating Scenes, you should put your app behavior on scripts folder.
+// app.cpp
 
 #include "app.h"
 
-void App::setupScenes()
+void App::setup()
 {
-    Scene *LoginScene = new Scene("LoginScene");
+    setupDisplay();
 
-    SceneManager::switchScene(LoginScene);
+    loadScene();
 
-    LoginScene->addScript(new LoginController());
+    amoled.setHomeButtonCallback([](void *ptr) {
+        static uint32_t checkMs = 0;
+
+        if (millis() > checkMs) 
+            App::homeButtonPressed();
+
+        checkMs = millis() + 200;
+    }, NULL);
+}
+
+void App::setupDisplay()
+{
+    amoled.beginAMOLED_191();
+
+    beginLvglHelper(amoled);
+}
+
+void App::loadScene()
+{
+    Scene *currentScene = new Scene("LoginScene");
+
+    SceneManager::switchScene(currentScene);
+
+    currentScene->addScript(new LoginController);
+}
+
+void App::homeButtonPressed()
+{
+    Scene *currentScene = new Scene("SettingScene");
+
+    SceneManager::switchScene(currentScene);
+
+    currentScene->addScript(new SettingController);
+}
+
+void App::update()
+{
+    lv_task_handler();
+    delay(5);
 }
