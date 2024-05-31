@@ -4,27 +4,36 @@
 #define APP_H
 
 #include <corgi_framwork/Scene.h>
-#include <Arduino.h>
 #include <corgi_framwork/SceneManager.h>
-#include <lcd_helpers/LilyGo_AMOLED.h>
-#include <lcd_helpers/LV_Helper.h>
 
-#include <scripts/LoginController/LoginController.h>
+#include <Arduino.h>
+
+#include <helpers/LilyGo_AMOLED.h>
+#include <helpers/LV_Helper.h>
+#include <helpers/SPIFFS_helper.h>
+
+#include <scripts/BotKeyController/BotKeyController.h>
 #include <scripts/SettingController/SettingController.h>
+#include <scripts/ChatController/ChatController.h>
+
+#include <config.h>
 
 class App
 {
     public:
+        App() {}
+        LilyGo_Class amoled;
+
         void setup();
         void update();
-        LilyGo_Class amoled;
-        lv_obj_t *Keyboard;
-        App() {}
+
+        static void onBotApplicationVerified();
 
     private:
         void setupDisplay();
         void loadScene();
         static void homeButtonPressed();
+        static bool IsInSetting = false;
 };
 
 #endif // APP_H

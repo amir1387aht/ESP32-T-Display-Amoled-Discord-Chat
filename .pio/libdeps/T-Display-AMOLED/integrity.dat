@@ -1,4 +1,8 @@
+bblanchon/ArduinoJson@^7.0.4
+FS
+ESP Async WebServer
+SPIFFS
 lvgl/lvgl @ ~8.3.11
-lewisxhe/XPowersLib @ 0.2.1
-bxparks/AceButton @ 1.10.1
 lewisxhe/SensorLib @ 0.2.0
+bxparks/AceButton @ 1.10.1
+lewisxhe/XPowersLib @ 0.2.1

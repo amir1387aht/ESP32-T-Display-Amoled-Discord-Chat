@@ -16,10 +16,13 @@ private:
     String sceneName;
 
 public:
-    Scene(String name) : scriptCount(0), sceneName(name) {} // Initialize scriptCount to 0 in the constructor
+    Scene(String name) : scriptCount(0), sceneName(name) {} // Initialize
 
     // Function to add scripts to the scene
     void addScript(Script *script);
+    
+    // Function to add scripts to the scene
+    void removeScript(Script *script);
 
     // Function to update all scripts in the scene
     void updateScripts();

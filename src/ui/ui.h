@@ -11,8 +11,9 @@ extern "C" {
 #endif
 
 #include "lvgl.h"
-#include "ui/ui_helpers.h"
-#include "ui/ui_events.h"
+
+#include "ui_helpers.h"
+#include "ui_events.h"
 
 void KeyboardShow_Animation(lv_obj_t * TargetObject, int delay);
 void KeyboardHide_Animation(lv_obj_t * TargetObject, int delay);
@@ -28,13 +29,14 @@ extern lv_obj_t * ui_Info_Text;
 extern lv_obj_t * ui_Text_1;
 extern lv_obj_t * ui_Text_2;
 extern lv_obj_t * ui_Text_3;
+extern lv_obj_t * ui_GettingInfoPanel;
+extern lv_obj_t * ui_Loading_Text;
+extern lv_obj_t * ui_Spinner;
 extern lv_obj_t * ui____initial_actions0;
 
 
 LV_IMG_DECLARE(ui_img_1102433829);    // assets/discord.local-qrcode-img.png
 LV_IMG_DECLARE(ui_img_discord_com_login_normal_png);    // assets/discord.com_login_normal.png
-LV_IMG_DECLARE(ui_img_2132233354);    // assets/icons8-hide-password-30.png
-LV_IMG_DECLARE(ui_img_1618681362);    // assets/icons8-show-password-24.png
 
 
 

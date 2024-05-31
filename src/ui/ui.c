@@ -2,42 +2,43 @@
 // SquareLine Studio version: SquareLine Studio 1.4.0
 // LVGL version: 8.3.11
 // Project name: Discord Login
-#include "ui/ui.h"
-#include "ui/ui_helpers.h"
+
+#include "ui.h"
+#include "ui_helpers.h"
 
 ///////////////////// VARIABLES ////////////////////
-void KeyboardShow_Animation(lv_obj_t * TargetObject, int delay);
-void KeyboardHide_Animation(lv_obj_t * TargetObject, int delay);
-
+void KeyboardShow_Animation(lv_obj_t *TargetObject, int delay);
+void KeyboardHide_Animation(lv_obj_t *TargetObject, int delay);
 
 // SCREEN: ui_BotKeyScreen
 void ui_BotKeyScreen_screen_init(void);
-lv_obj_t * ui_BotKeyScreen;
-lv_obj_t * ui_Right_Panel;
-lv_obj_t * ui_QrCode;
-lv_obj_t * ui_Left_Panel;
-lv_obj_t * ui_Header_Text;
-lv_obj_t * ui_Discord_Icon;
-lv_obj_t * ui_Info_Text;
-lv_obj_t * ui_Text_1;
-lv_obj_t * ui_Text_2;
-lv_obj_t * ui_Text_3;
-lv_obj_t * ui____initial_actions0;
-const lv_img_dsc_t * ui_imgset_953275234[1] = {&ui_img_2132233354};
-const lv_img_dsc_t * ui_imgset_874427455[1] = {&ui_img_1618681362};
+lv_obj_t *ui_BotKeyScreen;
+lv_obj_t *ui_Right_Panel;
+lv_obj_t *ui_QrCode;
+lv_obj_t *ui_Left_Panel;
+lv_obj_t *ui_Header_Text;
+lv_obj_t *ui_Discord_Icon;
+lv_obj_t *ui_Info_Text;
+lv_obj_t *ui_Text_1;
+lv_obj_t *ui_Text_2;
+lv_obj_t *ui_Text_3;
+lv_obj_t *ui_GettingInfoPanel;
+lv_obj_t *ui_Loading_Text;
+lv_obj_t *ui_Spinner;
+lv_obj_t *ui____initial_actions0;
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
 #if LV_COLOR_DEPTH != 16
-    #error "LV_COLOR_DEPTH should be 16bit to match SquareLine Studio's settings"
+#error "LV_COLOR_DEPTH should be 16bit to match SquareLine Studio's settings"
 #endif
-#if LV_COLOR_16_SWAP !=1
-    #error "LV_COLOR_16_SWAP should be 1 to match SquareLine Studio's settings"
+#if LV_COLOR_16_SWAP != 1
+#error "LV_COLOR_16_SWAP should be 1 to match SquareLine Studio's settings"
 #endif
 
 ///////////////////// ANIMATIONS ////////////////////
-void KeyboardShow_Animation(lv_obj_t * TargetObject, int delay)
+void KeyboardShow_Animation(lv_obj_t *TargetObject, int delay)
 {
-    ui_anim_user_data_t * PropertyAnimation_0_user_data = lv_mem_alloc(sizeof(ui_anim_user_data_t));
+    ui_anim_user_data_t *PropertyAnimation_0_user_data = lv_mem_alloc(sizeof(ui_anim_user_data_t));
     PropertyAnimation_0_user_data->target = TargetObject;
     PropertyAnimation_0_user_data->val = -1;
     lv_anim_t PropertyAnimation_0;
@@ -56,11 +57,10 @@ void KeyboardShow_Animation(lv_obj_t * TargetObject, int delay)
     lv_anim_set_early_apply(&PropertyAnimation_0, false);
     lv_anim_set_get_value_cb(&PropertyAnimation_0, &_ui_anim_callback_get_y);
     lv_anim_start(&PropertyAnimation_0);
-
 }
-void KeyboardHide_Animation(lv_obj_t * TargetObject, int delay)
+void KeyboardHide_Animation(lv_obj_t *TargetObject, int delay)
 {
-    ui_anim_user_data_t * PropertyAnimation_0_user_data = lv_mem_alloc(sizeof(ui_anim_user_data_t));
+    ui_anim_user_data_t *PropertyAnimation_0_user_data = lv_mem_alloc(sizeof(ui_anim_user_data_t));
     PropertyAnimation_0_user_data->target = TargetObject;
     PropertyAnimation_0_user_data->val = -1;
     lv_anim_t PropertyAnimation_0;
@@ -79,7 +79,6 @@ void KeyboardHide_Animation(lv_obj_t * TargetObject, int delay)
     lv_anim_set_early_apply(&PropertyAnimation_0, false);
     lv_anim_set_get_value_cb(&PropertyAnimation_0, &_ui_anim_callback_get_y);
     lv_anim_start(&PropertyAnimation_0);
-
 }
 
 ///////////////////// FUNCTIONS ////////////////////
@@ -88,9 +87,10 @@ void KeyboardHide_Animation(lv_obj_t * TargetObject, int delay)
 
 void ui_init(void)
 {
-    lv_disp_t * dispp = lv_disp_get_default();
-    lv_theme_t * theme = lv_theme_default_init(dispp, lv_palette_main(LV_PALETTE_BLUE), lv_palette_main(LV_PALETTE_RED),
-                                               false, LV_FONT_DEFAULT);
+    lv_disp_t *dispp = lv_disp_get_default();
+    lv_theme_t *theme = lv_theme_default_init(dispp, lv_palette_main(LV_PALETTE_BLUE), lv_palette_main(LV_PALETTE_RED),
+        false, LV_FONT_DEFAULT);
+        
     lv_disp_set_theme(dispp, theme);
     ui_BotKeyScreen_screen_init();
     ui____initial_actions0 = lv_obj_create(NULL);

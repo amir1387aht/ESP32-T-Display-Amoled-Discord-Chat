@@ -2,7 +2,8 @@
 // SquareLine Studio version: SquareLine Studio 1.4.0
 // LVGL version: 8.3.11
 // Project name: Discord Login
-#include "ui/ui.h"
+
+#include "../ui.h"
 
 void ui_BotKeyScreen_screen_init(void)
 {
@@ -100,11 +101,48 @@ void ui_BotKeyScreen_screen_init(void)
     lv_obj_set_width(ui_Text_3, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Text_3, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(ui_Text_3, -21);
-    lv_obj_set_y(ui_Text_3, 171);
+    lv_obj_set_y(ui_Text_3, 168);
     lv_obj_set_align(ui_Text_3, LV_ALIGN_TOP_MID);
     lv_label_set_text(ui_Text_3, "3. Paste Your Bot Key And Click Submit,\n That's All !");
     lv_obj_set_style_text_color(ui_Text_3, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_Text_3, 245, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_Text_3, &ui_font_gg_sans_small, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_GettingInfoPanel = lv_obj_create(ui_BotKeyScreen);
+    lv_obj_set_width(ui_GettingInfoPanel, lv_pct(100));
+    lv_obj_set_height(ui_GettingInfoPanel, lv_pct(100));
+    lv_obj_set_align(ui_GettingInfoPanel, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_GettingInfoPanel, LV_OBJ_FLAG_HIDDEN);     /// Flags
+    lv_obj_clear_flag(ui_GettingInfoPanel, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_radius(ui_GettingInfoPanel, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui_GettingInfoPanel, lv_color_hex(0x313338), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_GettingInfoPanel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_color(ui_GettingInfoPanel, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_opa(ui_GettingInfoPanel, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_Loading_Text = lv_label_create(ui_GettingInfoPanel);
+    lv_obj_set_width(ui_Loading_Text, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Loading_Text, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_Loading_Text, 0);
+    lv_obj_set_y(ui_Loading_Text, 50);
+    lv_obj_set_align(ui_Loading_Text, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Loading_Text, "Please Wait, Getting Bot Info...");
+    lv_obj_set_style_text_color(ui_Loading_Text, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_Loading_Text, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Loading_Text, &ui_font_gg_sans_bold, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_Spinner = lv_spinner_create(ui_GettingInfoPanel, 1000, 90);
+    lv_obj_set_width(ui_Spinner, 80);
+    lv_obj_set_height(ui_Spinner, 80);
+    lv_obj_set_x(ui_Spinner, 0);
+    lv_obj_set_y(ui_Spinner, -25);
+    lv_obj_set_align(ui_Spinner, LV_ALIGN_CENTER);
+    lv_obj_clear_flag(ui_Spinner, LV_OBJ_FLAG_CLICKABLE);      /// Flags
+    lv_obj_set_style_arc_color(ui_Spinner, lv_color_hex(0x1E1F22), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_arc_opa(ui_Spinner, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    lv_obj_set_style_arc_color(ui_Spinner, lv_color_hex(0x5865F2), LV_PART_INDICATOR | LV_STATE_DEFAULT);
+    lv_obj_set_style_arc_opa(ui_Spinner, 255, LV_PART_INDICATOR | LV_STATE_DEFAULT);
+    lv_obj_set_style_arc_rounded(ui_Spinner, true, LV_PART_INDICATOR | LV_STATE_DEFAULT);
 
 }

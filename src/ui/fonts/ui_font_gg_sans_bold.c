@@ -3,7 +3,8 @@
  * Bpp: 8
  * Opts: --bpp 8 --size 19 --font D:/Projects/SquarLine/assets/ggsans-Bold.ttf -o D:/Projects/SquarLine/assets\ui_font_gg_sans_bold.c --format lvgl -r 0x20-0xff --no-compress --no-prefilter
  ******************************************************************************/
-#include "ui/ui.h"
+
+#include "../ui.h"
 
 #ifndef UI_FONT_GG_SANS_BOLD
 #define UI_FONT_GG_SANS_BOLD 1

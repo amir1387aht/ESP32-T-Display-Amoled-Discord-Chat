@@ -5,8 +5,6 @@ SET(SOURCES screens/ui_BotKeyScreen.c
     ui_events.c
     images/ui_img_1102433829.c
     images/ui_img_discord_com_login_normal_png.c
-    images/ui_img_2132233354.c
-    images/ui_img_1618681362.c
     fonts/ui_font_gg_sans_bold.c
     fonts/ui_font_gg_sans_small.c)
 
