@@ -111,3 +111,11 @@ void beginLvglHelper(LilyGo_Display &board, bool debug)
         lv_indev_drv_register(&indev_drv);
     }
 }
+
+void changeScreen(lv_obj_t ** target, lv_scr_load_anim_t fademode, int spd, int delay, void (*target_init)(void), bool saveAsLastScreen)
+{
+    if(saveAsLastScreen)
+        lastScreen = *target;
+
+    _ui_screen_change(target, fademode, spd, delay, target_init);
+}

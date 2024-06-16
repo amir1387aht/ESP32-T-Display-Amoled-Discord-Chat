@@ -3,6 +3,9 @@
 #ifndef SCRIPT_H
 #define SCRIPT_H
 
+#define DEFINE_TYPE_TAG(className) \
+    virtual const char *getTypeTag() const override { return #className; }
+
 class Script
 {
 private:
@@ -21,6 +24,11 @@ public:
     bool IsEnabled() const
     {
         return isEnabled;
+    }
+
+    virtual const char *getTypeTag() const
+    {
+        return "Script";
     }
 
     virtual void start() = 0;

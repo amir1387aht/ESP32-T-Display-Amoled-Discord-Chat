@@ -21,10 +21,12 @@ class BotKeyController : public Script
 public:
     void start() override;
     void update() override;
+    static void onBotKeyEntered(String botKey);
+
+    DEFINE_TYPE_TAG(BotKeyController)
 
 private:
     void handleBotKeyPage();
-    static void onBotKeyEntered(String botKey);
     static void handleGetApplicationResponse(int httpResponseCode, const String &payload);
 };
 

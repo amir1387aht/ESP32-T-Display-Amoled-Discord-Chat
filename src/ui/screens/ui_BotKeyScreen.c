@@ -2,8 +2,7 @@
 // SquareLine Studio version: SquareLine Studio 1.4.0
 // LVGL version: 8.3.11
 // Project name: Discord Login
-
-#include "../ui.h"
+#include "ui/ui.h"
 
 void ui_BotKeyScreen_screen_init(void)
 {
@@ -12,137 +11,140 @@ void ui_BotKeyScreen_screen_init(void)
     lv_obj_set_style_bg_color(ui_BotKeyScreen, lv_color_hex(0x313338), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_BotKeyScreen, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_Right_Panel = lv_obj_create(ui_BotKeyScreen);
-    lv_obj_set_width(ui_Right_Panel, lv_pct(40));
-    lv_obj_set_height(ui_Right_Panel, lv_pct(100));
-    lv_obj_set_align(ui_Right_Panel, LV_ALIGN_RIGHT_MID);
-    lv_obj_clear_flag(ui_Right_Panel, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_Right_Panel, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_Right_Panel, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui_Right_Panel, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui_Right_Panel, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_Bot_Key_Right_Panel = lv_obj_create(ui_BotKeyScreen);
+    lv_obj_set_width(ui_Bot_Key_Right_Panel, lv_pct(40));
+    lv_obj_set_height(ui_Bot_Key_Right_Panel, lv_pct(100));
+    lv_obj_set_align(ui_Bot_Key_Right_Panel, LV_ALIGN_RIGHT_MID);
+    lv_obj_clear_flag(ui_Bot_Key_Right_Panel, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_color(ui_Bot_Key_Right_Panel, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_Bot_Key_Right_Panel, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_color(ui_Bot_Key_Right_Panel, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_opa(ui_Bot_Key_Right_Panel, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_QrCode = lv_img_create(ui_Right_Panel);
-    lv_img_set_src(ui_QrCode, &ui_img_1102433829);
-    lv_obj_set_width(ui_QrCode, 150);
-    lv_obj_set_height(ui_QrCode, 150);
-    lv_obj_set_x(ui_QrCode, -10);
-    lv_obj_set_y(ui_QrCode, 0);
-    lv_obj_set_align(ui_QrCode, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_QrCode, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
-    lv_obj_clear_flag(ui_QrCode, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    ui_Bot_Key_Right_Panel_QrCode = lv_img_create(ui_Bot_Key_Right_Panel);
+    lv_img_set_src(ui_Bot_Key_Right_Panel_QrCode, &ui_img_1102433829);
+    lv_obj_set_width(ui_Bot_Key_Right_Panel_QrCode, 150);
+    lv_obj_set_height(ui_Bot_Key_Right_Panel_QrCode, 150);
+    lv_obj_set_x(ui_Bot_Key_Right_Panel_QrCode, -10);
+    lv_obj_set_y(ui_Bot_Key_Right_Panel_QrCode, 0);
+    lv_obj_set_align(ui_Bot_Key_Right_Panel_QrCode, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_Bot_Key_Right_Panel_QrCode, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
+    lv_obj_clear_flag(ui_Bot_Key_Right_Panel_QrCode, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
-    ui_Left_Panel = lv_obj_create(ui_BotKeyScreen);
-    lv_obj_set_width(ui_Left_Panel, lv_pct(60));
-    lv_obj_set_height(ui_Left_Panel, lv_pct(100));
-    lv_obj_set_align(ui_Left_Panel, LV_ALIGN_LEFT_MID);
-    lv_obj_clear_flag(ui_Left_Panel, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_Left_Panel, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_Left_Panel, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui_Left_Panel, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui_Left_Panel, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_Bot_Key_Left_Panel = lv_obj_create(ui_BotKeyScreen);
+    lv_obj_set_width(ui_Bot_Key_Left_Panel, lv_pct(60));
+    lv_obj_set_height(ui_Bot_Key_Left_Panel, lv_pct(100));
+    lv_obj_set_align(ui_Bot_Key_Left_Panel, LV_ALIGN_LEFT_MID);
+    lv_obj_clear_flag(ui_Bot_Key_Left_Panel, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_color(ui_Bot_Key_Left_Panel, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_Bot_Key_Left_Panel, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_color(ui_Bot_Key_Left_Panel, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_opa(ui_Bot_Key_Left_Panel, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_Header_Text = lv_label_create(ui_Left_Panel);
-    lv_obj_set_width(ui_Header_Text, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_Header_Text, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Header_Text, 3);
-    lv_obj_set_y(ui_Header_Text, 25);
-    lv_obj_set_align(ui_Header_Text, LV_ALIGN_TOP_MID);
-    lv_label_set_text(ui_Header_Text, "Welcom back to Discord!");
-    lv_obj_set_style_text_color(ui_Header_Text, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui_Header_Text, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Header_Text, &ui_font_gg_sans_bold, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_Bot_Key_Left_Panel_Header_Text = lv_label_create(ui_Bot_Key_Left_Panel);
+    lv_obj_set_width(ui_Bot_Key_Left_Panel_Header_Text, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Bot_Key_Left_Panel_Header_Text, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_Bot_Key_Left_Panel_Header_Text, 3);
+    lv_obj_set_y(ui_Bot_Key_Left_Panel_Header_Text, 25);
+    lv_obj_set_align(ui_Bot_Key_Left_Panel_Header_Text, LV_ALIGN_TOP_MID);
+    lv_label_set_text(ui_Bot_Key_Left_Panel_Header_Text, "Welcom back to Discord!");
+    lv_obj_set_style_text_color(ui_Bot_Key_Left_Panel_Header_Text, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_Bot_Key_Left_Panel_Header_Text, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Bot_Key_Left_Panel_Header_Text, &ui_font_gg_sans_bold, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_Discord_Icon = lv_img_create(ui_Left_Panel);
-    lv_img_set_src(ui_Discord_Icon, &ui_img_discord_com_login_normal_png);
-    lv_obj_set_width(ui_Discord_Icon, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_Discord_Icon, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Discord_Icon, 0);
-    lv_obj_set_y(ui_Discord_Icon, -10);
-    lv_obj_set_align(ui_Discord_Icon, LV_ALIGN_TOP_MID);
-    lv_obj_add_flag(ui_Discord_Icon, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
-    lv_obj_clear_flag(ui_Discord_Icon, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    ui_Bot_Key_Left_Panel_Discord_Icon = lv_img_create(ui_Bot_Key_Left_Panel);
+    lv_img_set_src(ui_Bot_Key_Left_Panel_Discord_Icon, &ui_img_discord_com_login_normal_png);
+    lv_obj_set_width(ui_Bot_Key_Left_Panel_Discord_Icon, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Bot_Key_Left_Panel_Discord_Icon, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_Bot_Key_Left_Panel_Discord_Icon, 0);
+    lv_obj_set_y(ui_Bot_Key_Left_Panel_Discord_Icon, -10);
+    lv_obj_set_align(ui_Bot_Key_Left_Panel_Discord_Icon, LV_ALIGN_TOP_MID);
+    lv_obj_add_flag(ui_Bot_Key_Left_Panel_Discord_Icon, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
+    lv_obj_clear_flag(ui_Bot_Key_Left_Panel_Discord_Icon, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
-    ui_Info_Text = lv_label_create(ui_Left_Panel);
-    lv_obj_set_width(ui_Info_Text, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_Info_Text, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Info_Text, -30);
-    lv_obj_set_y(ui_Info_Text, 65);
-    lv_obj_set_align(ui_Info_Text, LV_ALIGN_TOP_MID);
-    lv_label_set_text(ui_Info_Text, "To Setup your Bot Key Follow These Steps :");
-    lv_obj_set_style_text_color(ui_Info_Text, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui_Info_Text, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Info_Text, &ui_font_gg_sans_small, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_Bot_Key_Left_Panel_Info_Text = lv_label_create(ui_Bot_Key_Left_Panel);
+    lv_obj_set_width(ui_Bot_Key_Left_Panel_Info_Text, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Bot_Key_Left_Panel_Info_Text, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_Bot_Key_Left_Panel_Info_Text, -30);
+    lv_obj_set_y(ui_Bot_Key_Left_Panel_Info_Text, 65);
+    lv_obj_set_align(ui_Bot_Key_Left_Panel_Info_Text, LV_ALIGN_TOP_MID);
+    lv_label_set_text(ui_Bot_Key_Left_Panel_Info_Text, "To Setup your Bot Key Follow These Steps :");
+    lv_obj_set_style_text_color(ui_Bot_Key_Left_Panel_Info_Text, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_Bot_Key_Left_Panel_Info_Text, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Bot_Key_Left_Panel_Info_Text, &ui_font_gg_sans_small, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_Text_1 = lv_label_create(ui_Left_Panel);
-    lv_obj_set_width(ui_Text_1, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_Text_1, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Text_1, -40);
-    lv_obj_set_y(ui_Text_1, 85);
-    lv_obj_set_align(ui_Text_1, LV_ALIGN_TOP_MID);
-    lv_label_set_text(ui_Text_1, "1. Copy Your Bot Key In \n    Discord Developer Application");
-    lv_obj_set_style_text_color(ui_Text_1, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui_Text_1, 245, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Text_1, &ui_font_gg_sans_small, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_Bot_Key_Left_Panel_Text_1 = lv_label_create(ui_Bot_Key_Left_Panel);
+    lv_obj_set_width(ui_Bot_Key_Left_Panel_Text_1, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Bot_Key_Left_Panel_Text_1, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_Bot_Key_Left_Panel_Text_1, -40);
+    lv_obj_set_y(ui_Bot_Key_Left_Panel_Text_1, 85);
+    lv_obj_set_align(ui_Bot_Key_Left_Panel_Text_1, LV_ALIGN_TOP_MID);
+    lv_label_set_text(ui_Bot_Key_Left_Panel_Text_1, "1. Copy Your Bot Key In \n    Discord Developer Application");
+    lv_obj_set_style_text_color(ui_Bot_Key_Left_Panel_Text_1, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_Bot_Key_Left_Panel_Text_1, 245, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Bot_Key_Left_Panel_Text_1, &ui_font_gg_sans_small, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_Text_2 = lv_label_create(ui_Left_Panel);
-    lv_obj_set_width(ui_Text_2, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_Text_2, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Text_2, 1);
-    lv_obj_set_y(ui_Text_2, 119);
-    lv_obj_set_align(ui_Text_2, LV_ALIGN_TOP_MID);
-    lv_label_set_text(ui_Text_2,
+    ui_Bot_Key_Left_Panel_Text_2 = lv_label_create(ui_Bot_Key_Left_Panel);
+    lv_obj_set_width(ui_Bot_Key_Left_Panel_Text_2, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Bot_Key_Left_Panel_Text_2, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_Bot_Key_Left_Panel_Text_2, 1);
+    lv_obj_set_y(ui_Bot_Key_Left_Panel_Text_2, 119);
+    lv_obj_set_align(ui_Bot_Key_Left_Panel_Text_2, LV_ALIGN_TOP_MID);
+    lv_label_set_text(ui_Bot_Key_Left_Panel_Text_2,
                       "2. Connect Your PC to \"Discord Bot\" Wifi With\n    \"Discord Bot\" Password And Scan this QrCode\n     Or Open \"Discord.local\" in Your PC");
-    lv_obj_set_style_text_color(ui_Text_2, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui_Text_2, 245, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Text_2, &ui_font_gg_sans_small, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_Bot_Key_Left_Panel_Text_2, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_Bot_Key_Left_Panel_Text_2, 245, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Bot_Key_Left_Panel_Text_2, &ui_font_gg_sans_small, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_Text_3 = lv_label_create(ui_Left_Panel);
-    lv_obj_set_width(ui_Text_3, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_Text_3, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Text_3, -21);
-    lv_obj_set_y(ui_Text_3, 168);
-    lv_obj_set_align(ui_Text_3, LV_ALIGN_TOP_MID);
-    lv_label_set_text(ui_Text_3, "3. Paste Your Bot Key And Click Submit,\n That's All !");
-    lv_obj_set_style_text_color(ui_Text_3, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui_Text_3, 245, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Text_3, &ui_font_gg_sans_small, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_Bot_Key_Left_Panel_Text_3 = lv_label_create(ui_Bot_Key_Left_Panel);
+    lv_obj_set_width(ui_Bot_Key_Left_Panel_Text_3, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Bot_Key_Left_Panel_Text_3, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_Bot_Key_Left_Panel_Text_3, -21);
+    lv_obj_set_y(ui_Bot_Key_Left_Panel_Text_3, 168);
+    lv_obj_set_align(ui_Bot_Key_Left_Panel_Text_3, LV_ALIGN_TOP_MID);
+    lv_label_set_text(ui_Bot_Key_Left_Panel_Text_3, "3. Paste Your Bot Key And Click Submit,\n That's All !");
+    lv_obj_set_style_text_color(ui_Bot_Key_Left_Panel_Text_3, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_Bot_Key_Left_Panel_Text_3, 245, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Bot_Key_Left_Panel_Text_3, &ui_font_gg_sans_small, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_GettingInfoPanel = lv_obj_create(ui_BotKeyScreen);
-    lv_obj_set_width(ui_GettingInfoPanel, lv_pct(100));
-    lv_obj_set_height(ui_GettingInfoPanel, lv_pct(100));
-    lv_obj_set_align(ui_GettingInfoPanel, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_GettingInfoPanel, LV_OBJ_FLAG_HIDDEN);     /// Flags
-    lv_obj_clear_flag(ui_GettingInfoPanel, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_radius(ui_GettingInfoPanel, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_color(ui_GettingInfoPanel, lv_color_hex(0x313338), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_GettingInfoPanel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui_GettingInfoPanel, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui_GettingInfoPanel, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_Bot_Key_Getting_Info_Panel = lv_obj_create(ui_BotKeyScreen);
+    lv_obj_set_width(ui_Bot_Key_Getting_Info_Panel, lv_pct(100));
+    lv_obj_set_height(ui_Bot_Key_Getting_Info_Panel, lv_pct(100));
+    lv_obj_set_align(ui_Bot_Key_Getting_Info_Panel, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_Bot_Key_Getting_Info_Panel, LV_OBJ_FLAG_HIDDEN);     /// Flags
+    lv_obj_clear_flag(ui_Bot_Key_Getting_Info_Panel, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_radius(ui_Bot_Key_Getting_Info_Panel, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui_Bot_Key_Getting_Info_Panel, lv_color_hex(0x313338), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_Bot_Key_Getting_Info_Panel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_color(ui_Bot_Key_Getting_Info_Panel, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_opa(ui_Bot_Key_Getting_Info_Panel, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_Loading_Text = lv_label_create(ui_GettingInfoPanel);
-    lv_obj_set_width(ui_Loading_Text, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_Loading_Text, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Loading_Text, 0);
-    lv_obj_set_y(ui_Loading_Text, 50);
-    lv_obj_set_align(ui_Loading_Text, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Loading_Text, "Please Wait, Getting Bot Info...");
-    lv_obj_set_style_text_color(ui_Loading_Text, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui_Loading_Text, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Loading_Text, &ui_font_gg_sans_bold, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_Bot_Key_Getting_Info_Panel_Loading_Text = lv_label_create(ui_Bot_Key_Getting_Info_Panel);
+    lv_obj_set_width(ui_Bot_Key_Getting_Info_Panel_Loading_Text, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Bot_Key_Getting_Info_Panel_Loading_Text, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_Bot_Key_Getting_Info_Panel_Loading_Text, 0);
+    lv_obj_set_y(ui_Bot_Key_Getting_Info_Panel_Loading_Text, 50);
+    lv_obj_set_align(ui_Bot_Key_Getting_Info_Panel_Loading_Text, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Bot_Key_Getting_Info_Panel_Loading_Text, "Please Wait, Getting Bot Info...");
+    lv_obj_set_style_text_color(ui_Bot_Key_Getting_Info_Panel_Loading_Text, lv_color_hex(0xFFFFFF),
+                                LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_Bot_Key_Getting_Info_Panel_Loading_Text, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Bot_Key_Getting_Info_Panel_Loading_Text, &ui_font_gg_sans_bold,
+                               LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_Spinner = lv_spinner_create(ui_GettingInfoPanel, 1000, 90);
-    lv_obj_set_width(ui_Spinner, 80);
-    lv_obj_set_height(ui_Spinner, 80);
-    lv_obj_set_x(ui_Spinner, 0);
-    lv_obj_set_y(ui_Spinner, -25);
-    lv_obj_set_align(ui_Spinner, LV_ALIGN_CENTER);
-    lv_obj_clear_flag(ui_Spinner, LV_OBJ_FLAG_CLICKABLE);      /// Flags
-    lv_obj_set_style_arc_color(ui_Spinner, lv_color_hex(0x1E1F22), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_arc_opa(ui_Spinner, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_Bot_Key_Getting_Info_Panel_Loading_Spinner = lv_spinner_create(ui_Bot_Key_Getting_Info_Panel, 1000, 90);
+    lv_obj_set_width(ui_Bot_Key_Getting_Info_Panel_Loading_Spinner, 80);
+    lv_obj_set_height(ui_Bot_Key_Getting_Info_Panel_Loading_Spinner, 80);
+    lv_obj_set_x(ui_Bot_Key_Getting_Info_Panel_Loading_Spinner, 0);
+    lv_obj_set_y(ui_Bot_Key_Getting_Info_Panel_Loading_Spinner, -25);
+    lv_obj_set_align(ui_Bot_Key_Getting_Info_Panel_Loading_Spinner, LV_ALIGN_CENTER);
+    lv_obj_clear_flag(ui_Bot_Key_Getting_Info_Panel_Loading_Spinner, LV_OBJ_FLAG_CLICKABLE);      /// Flags
+    lv_obj_set_style_arc_color(ui_Bot_Key_Getting_Info_Panel_Loading_Spinner, lv_color_hex(0x1E1F22),
+                               LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_arc_opa(ui_Bot_Key_Getting_Info_Panel_Loading_Spinner, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    lv_obj_set_style_arc_color(ui_Spinner, lv_color_hex(0x5865F2), LV_PART_INDICATOR | LV_STATE_DEFAULT);
-    lv_obj_set_style_arc_opa(ui_Spinner, 255, LV_PART_INDICATOR | LV_STATE_DEFAULT);
-    lv_obj_set_style_arc_rounded(ui_Spinner, true, LV_PART_INDICATOR | LV_STATE_DEFAULT);
+    lv_obj_set_style_arc_color(ui_Bot_Key_Getting_Info_Panel_Loading_Spinner, lv_color_hex(0x5865F2),
+                               LV_PART_INDICATOR | LV_STATE_DEFAULT);
+    lv_obj_set_style_arc_opa(ui_Bot_Key_Getting_Info_Panel_Loading_Spinner, 255, LV_PART_INDICATOR | LV_STATE_DEFAULT);
 
 }

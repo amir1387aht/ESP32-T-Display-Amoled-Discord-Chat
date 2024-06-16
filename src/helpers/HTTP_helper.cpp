@@ -1,8 +1,19 @@
 #include "HTTP_helper.h"
 
-void HTTP_helper::begin(const char *ssid, const char *password)
+void HTTP_helper::begin()
 {
-    connectWiFi(ssid, password);
+    // Connect Automatically To WiFi
+    WiFi.mode(WIFI_STA);
+
+    wifi_config_t current_conf;
+
+    esp_wifi_get_config(WIFI_IF_STA, &current_conf);
+
+    if (strlen((const char *)current_conf.sta.ssid) != 0)
+    {
+        WiFi.begin();
+        Serial.println(String("Connecting To WiFi with SSID : ") + String((const char *)current_conf.sta.ssid));
+    }
 }
 
 void HTTP_helper::connectWiFi(const char *ssid, const char *password)
@@ -61,110 +72,142 @@ String HTTP_helper::getPayload(const std::vector<Payload> &payload)
 
 void HTTP_helper::get(String url, ResponseCallback callback, const std::vector<Header> &headers)
 {
-    HTTPClient http;
-
-    http.begin(url);
-
-    addHeaders(http, headers);
-
-    int httpResponseCode = http.GET();
-
-    String payload = "";
-
-    if (httpResponseCode > 0)
+    try
     {
-        payload = http.getString();
+        HTTPClient http;
+
+        http.begin(url);
+
+        addHeaders(http, headers);
+
+        int httpResponseCode = http.GET();
+
+        String payload = "";
+
+        if (httpResponseCode > 0)
+        {
+            payload = http.getString();
+        }
+        else
+        {
+            Serial.print("Error on GET request: ");
+            Serial.println(httpResponseCode);
+        }
+
+        http.end();
+
+        handleResponse(httpResponseCode, payload, callback);
     }
-    else
+    catch (const std::exception &e)
     {
-        Serial.print("Error on GET request: ");
-        Serial.println(httpResponseCode);
+        Serial.println(String("get request error : ") + String(e.what()));
+        handleResponse(-2, "{}", callback);
     }
-
-    http.end();
-
-    handleResponse(httpResponseCode, payload, callback);
 }
 
 void HTTP_helper::post(String url, ResponseCallback callback, const std::vector<Payload> &payload, const std::vector<Header> &headers, const char *contentType)
 {
-    HTTPClient http;
-
-    http.begin(url);
-    http.addHeader("Content-Type", contentType);
-
-    addHeaders(http, headers);
-
-    String PayloadString = getPayload(payload);
-
-    int httpResponseCode = http.POST(PayloadString);
-
-    String response = "";
-
-    if (httpResponseCode > 0)
+    try
     {
-        response = http.getString();
+        HTTPClient http;
+
+        http.begin(url);
+        http.addHeader("Content-Type", contentType);
+
+        addHeaders(http, headers);
+
+        String PayloadString = getPayload(payload);
+
+        int httpResponseCode = http.POST(PayloadString);
+
+        String response = "";
+
+        if (httpResponseCode > 0)
+        {
+            response = http.getString();
+        }
+        else
+        {
+            Serial.print("Error on POST request: ");
+            Serial.println(httpResponseCode);
+        }
+        http.end();
+        handleResponse(httpResponseCode, response, callback);
     }
-    else
+    catch (const std::exception &e)
     {
-        Serial.print("Error on POST request: ");
-        Serial.println(httpResponseCode);
+        Serial.println(String("post request error : ") + String(e.what()));
+        handleResponse(-2, "{}", callback);
     }
-    http.end();
-    handleResponse(httpResponseCode, response, callback);
 }
 
 void HTTP_helper::put(String url, ResponseCallback callback, const std::vector<Payload> &payload, const std::vector<Header> &headers, const char *contentType)
 {
-    HTTPClient http;
-
-    http.begin(url);
-    http.addHeader("Content-Type", contentType);
-
-    addHeaders(http, headers);
-
-    String PayloadString = getPayload(payload);
-
-    int httpResponseCode = http.PUT(PayloadString);
-
-    String response = "";
-
-    if (httpResponseCode > 0)
+    try
     {
-        response = http.getString();
+        HTTPClient http;
+
+        http.begin(url);
+        http.addHeader("Content-Type", contentType);
+
+        addHeaders(http, headers);
+
+        String PayloadString = getPayload(payload);
+
+        int httpResponseCode = http.PUT(PayloadString);
+
+        String response = "";
+
+        if (httpResponseCode > 0)
+        {
+            response = http.getString();
+        }
+        else
+        {
+            Serial.print("Error on PUT request: ");
+            Serial.println(httpResponseCode);
+        }
+        http.end();
+        handleResponse(httpResponseCode, response, callback);
     }
-    else
+    catch (const std::exception &e)
     {
-        Serial.print("Error on PUT request: ");
-        Serial.println(httpResponseCode);
+        Serial.println(String("put request error : ") + String(e.what()));
+        handleResponse(-2, "{}", callback);
     }
-    http.end();
-    handleResponse(httpResponseCode, response, callback);
 }
 
 void HTTP_helper::del(String url, ResponseCallback callback, const std::vector<Header> &headers)
 {
-    HTTPClient http;
-
-    http.begin(url);
-
-    addHeaders(http, headers);
-
-    int httpResponseCode = http.sendRequest("DELETE");
-
-    String response = "";
-
-    if (httpResponseCode > 0)
+    try
     {
-        response = http.getString();
-    }
-    else
-    {
-        Serial.print("Error on DELETE request: ");
-        Serial.println(httpResponseCode);
-    }
-    
-    http.end();
+        HTTPClient http;
 
-    handleResponse(httpResponseCode, response, callback);
+        http.begin(url);
+
+        addHeaders(http, headers);
+
+        int httpResponseCode = http.sendRequest("DELETE");
+
+        String response = "";
+
+        if (httpResponseCode > 0)
+        {
+            response = http.getString();
+        }
+        else
+        {
+            Serial.print("Error on DELETE request: ");
+            Serial.println(httpResponseCode);
+        }
+
+        http.end();
+
+        handleResponse(httpResponseCode, response, callback);
+    }
+    catch (const std::exception &e)
+    {
+        Serial.println(String("del request error : ") + String(e.what()));
+        handleResponse(-2, "{}", callback);
+    }
 }

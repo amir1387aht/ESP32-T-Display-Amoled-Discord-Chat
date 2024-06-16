@@ -2,13 +2,16 @@
 
 #include "app.h"
 
+bool App::IsInSetting = false;
+lv_obj_t *lastScreen = ui_BotKeyScreen;
+
 void App::setup()
 {
     Serial.begin(115200);
 
     SPIFFS_init();
-
-    HTTP_helper::begin(Station_SSID, Station_PASSWORD);
+    
+    HTTP_helper::begin();
 
     setupDisplay();
 
@@ -34,7 +37,7 @@ void App::setupDisplay()
 
 void App::loadScene()
 {
-    if (!fileExists("/bot/key.txt"))
+    if (!fileExists(KeyPath))
     {
         Scene *currentScene = new Scene("BotKeyScene");
 
@@ -44,7 +47,7 @@ void App::loadScene()
     }
     else
     {
-        BotKeyController::onBotKeyEntered(readFile("/bot/key.txt"));
+        BotKeyController::onBotKeyEntered(readFile(KeyPath));
     }
 }
 
@@ -59,15 +62,16 @@ void App::onBotApplicationVerified()
 
 void App::homeButtonPressed()
 {
-    IsInSetting = !IsInSetting;
+    App::IsInSetting = !App::IsInSetting;
 
-    if(IsInSetting)
+    if (App::IsInSetting)
         SceneManager::currentScene->addScript(new SettingController);
     else
-        SceneManager::currentScene->
+        SceneManager::currentScene->removeScriptByTypeName("SettingController");
 }
 
 void App::update()
 {
     lv_task_handler();
+    delay(5);
 }

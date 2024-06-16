@@ -7,6 +7,7 @@
 #include <vector>
 #include <utility>
 #include <ArduinoJson.h>
+#include <esp_wifi.h>
 
 class HTTP_helper
 {
@@ -18,15 +19,16 @@ public:
     HTTP_helper() = delete; // Prevent instantiation
     ~HTTP_helper() = delete;
 
-    static void begin(const char *ssid, const char *password);
+    static void begin();
 
     static void get(String url, ResponseCallback callback, const std::vector<Header> &headers = {});
     static void post(String url, ResponseCallback callback, const std::vector<Payload> &payload = {}, const std::vector<Header> &headers = {}, const char *contentType = "application/json");
     static void put(String url, ResponseCallback callback, const std::vector<Payload> &payload = {}, const std::vector<Header> &headers = {}, const char *contentType = "application/json");
     static void del(String url, ResponseCallback callback, const std::vector<Header> &headers = {});
 
-private:
     static void connectWiFi(const char *ssid, const char *password);
+
+private:
     static void handleResponse(int httpResponseCode, const String &payload, ResponseCallback callback);
     static void addHeaders(HTTPClient &http, const std::vector<Header> &headers);
     static String getPayload(const std::vector<Payload> &payload);

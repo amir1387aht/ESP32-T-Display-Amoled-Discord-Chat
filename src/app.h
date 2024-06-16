@@ -18,6 +18,10 @@
 
 #include <config.h>
 
+#include <ui/ui.h>
+
+extern lv_obj_t *lastScreen;
+
 class App
 {
     public:
@@ -26,14 +30,13 @@ class App
 
         void setup();
         void update();
-
         static void onBotApplicationVerified();
+        static bool IsInSetting;
 
     private:
         void setupDisplay();
         void loadScene();
         static void homeButtonPressed();
-        static bool IsInSetting = false;
 };
 
 #endif // APP_H

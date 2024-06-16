@@ -11,32 +11,68 @@ extern "C" {
 #endif
 
 #include "lvgl.h"
-
-#include "ui_helpers.h"
-#include "ui_events.h"
+#include "ui/ui_helpers.h"
+#include "ui/ui_events.h"
 
 void KeyboardShow_Animation(lv_obj_t * TargetObject, int delay);
 void KeyboardHide_Animation(lv_obj_t * TargetObject, int delay);
 // SCREEN: ui_BotKeyScreen
 void ui_BotKeyScreen_screen_init(void);
 extern lv_obj_t * ui_BotKeyScreen;
-extern lv_obj_t * ui_Right_Panel;
-extern lv_obj_t * ui_QrCode;
-extern lv_obj_t * ui_Left_Panel;
-extern lv_obj_t * ui_Header_Text;
-extern lv_obj_t * ui_Discord_Icon;
-extern lv_obj_t * ui_Info_Text;
-extern lv_obj_t * ui_Text_1;
-extern lv_obj_t * ui_Text_2;
-extern lv_obj_t * ui_Text_3;
-extern lv_obj_t * ui_GettingInfoPanel;
-extern lv_obj_t * ui_Loading_Text;
-extern lv_obj_t * ui_Spinner;
+extern lv_obj_t * ui_Bot_Key_Right_Panel;
+extern lv_obj_t * ui_Bot_Key_Right_Panel_QrCode;
+extern lv_obj_t * ui_Bot_Key_Left_Panel;
+extern lv_obj_t * ui_Bot_Key_Left_Panel_Header_Text;
+extern lv_obj_t * ui_Bot_Key_Left_Panel_Discord_Icon;
+extern lv_obj_t * ui_Bot_Key_Left_Panel_Info_Text;
+extern lv_obj_t * ui_Bot_Key_Left_Panel_Text_1;
+extern lv_obj_t * ui_Bot_Key_Left_Panel_Text_2;
+extern lv_obj_t * ui_Bot_Key_Left_Panel_Text_3;
+extern lv_obj_t * ui_Bot_Key_Getting_Info_Panel;
+extern lv_obj_t * ui_Bot_Key_Getting_Info_Panel_Loading_Text;
+extern lv_obj_t * ui_Bot_Key_Getting_Info_Panel_Loading_Spinner;
+// SCREEN: ui_Setting_Screen
+void ui_Setting_Screen_screen_init(void);
+extern lv_obj_t * ui_Setting_Screen;
+extern lv_obj_t * ui_Setting_Right_Panel;
+extern lv_obj_t * ui_Setting_Right_Panel_Container;
+extern lv_obj_t * ui_Setting_Right_Panel_Header_Label;
+void ui_event_Setting_Right_Panel_WiFi_Button(lv_event_t * e);
+extern lv_obj_t * ui_Setting_Right_Panel_WiFi_Button;
+extern lv_obj_t * ui_Setting_Right_Panel_WiFi_Button_Icon;
+extern lv_obj_t * ui_Setting_Right_Panel_WiFi_Button_Label;
+extern lv_obj_t * ui_Setting_Right_Panel_WiFi_Button_Description_Label;
+void ui_event_Setting_Right_Panel_Bot_Info_Button(lv_event_t * e);
+extern lv_obj_t * ui_Setting_Right_Panel_Bot_Info_Button;
+extern lv_obj_t * ui_Setting_Right_Panel_Bot_Info_Button_Icon;
+extern lv_obj_t * ui_Setting_Right_Panel_Bot_Info_Button_Label;
+extern lv_obj_t * ui_Setting_Right_Panel_Bot_Info_Button_Description_Label;
+void ui_event_Setting_Right_Panel_Info_Button(lv_event_t * e);
+extern lv_obj_t * ui_Setting_Right_Panel_Info_Button;
+extern lv_obj_t * ui_Setting_Right_Panel_Info_Button_Icon;
+extern lv_obj_t * ui_Setting_Right_Panel_Info_Button_Label;
+extern lv_obj_t * ui_Setting_Right_Panel_Info_Button_Description_Label;
+extern lv_obj_t * ui_Setting_Left_Panel;
+extern lv_obj_t * ui_Setting_Left_Panel_WiFi_Panel;
+extern lv_obj_t * ui_Setting_Left_Panel_WiFi_Panel_Label;
+extern lv_obj_t * ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle_Panel;
+void ui_event_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle(lv_event_t * e);
+extern lv_obj_t * ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle;
+extern lv_obj_t * ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle_Panel_Label;
+extern lv_obj_t * ui_Setting_Left_Panel_WiFi_Panel_Container;
+extern lv_obj_t * ui_Setting_Left_Panel_Bot_Info_Panel;
+extern lv_obj_t * ui_Setting_Left_Panel_Bot_Info_Panel_Label;
+extern lv_obj_t * ui_Setting_Left_Panel_About_Us_Panel;
+extern lv_obj_t * ui_Setting_Left_Panel_About_Us_Panel_Label;
+extern lv_obj_t * ui_Setting_Keyboard;
 extern lv_obj_t * ui____initial_actions0;
 
 
 LV_IMG_DECLARE(ui_img_1102433829);    // assets/discord.local-qrcode-img.png
 LV_IMG_DECLARE(ui_img_discord_com_login_normal_png);    // assets/discord.com_login_normal.png
+LV_IMG_DECLARE(ui_img_592994106);    // assets/setting-circle-icon-wifi.png
+LV_IMG_DECLARE(ui_img_2024208504);    // assets/setting-icons8-bot-36.png
+LV_IMG_DECLARE(ui_img_1746740777);    // assets/setting-icons8-info-36.png
 
 
 

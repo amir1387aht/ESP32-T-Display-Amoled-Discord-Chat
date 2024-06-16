@@ -8,6 +8,7 @@ IPAddress ip WebServer_IP;
 
 void BotKeyController::start()
 {
+    lastScreen = ui_BotKeyScreen;
     ui_init();
 
     handleBotKeyPage();
@@ -19,6 +20,8 @@ void BotKeyController::update()
 
 void BotKeyController::handleBotKeyPage()
 {
+    WiFi.mode(WIFI_AP);
+
     WiFi.softAPConfig(ip, ip, IPAddress(255, 255, 255, 0));
     WiFi.softAP(WebServer_SSID, WebServer_PASSWORD);
 
@@ -48,13 +51,14 @@ void BotKeyController::handleBotKeyPage()
     {
         if (request->hasParam("bot-key", true))
         {
-            String botKey = request->getParam("bot-key", true)->value();
-
-            botKey = "Bot " + botKey;
+            String botKey = String("Bot ") + request->getParam("bot-key", true)->value();
 
             writeFile(KeyPath, botKey.c_str());
 
             request->send(200, "text/plain", "Bot key saved successfully");
+
+            server.end();
+            MDNS.end();
 
             BotKeyController::onBotKeyEntered(botKey);
         }
@@ -69,7 +73,12 @@ void BotKeyController::handleBotKeyPage()
 
 void BotKeyController::onBotKeyEntered(String botKey)
 {
-    lv_obj_clear_flag(ui_GettingInfoPanel, LV_OBJ_FLAG_HIDDEN);
+    Serial.println(botKey);
+
+    WiFi.mode(WIFI_STA);
+
+    if(ui_Bot_Key_Getting_Info_Panel != NULL)
+        lv_obj_clear_flag(ui_Bot_Key_Getting_Info_Panel, LV_OBJ_FLAG_HIDDEN);
 
     std::vector<HTTP_helper::Header> headers = {
         {"Authorization", botKey}
@@ -80,22 +89,17 @@ void BotKeyController::onBotKeyEntered(String botKey)
 
 void BotKeyController::handleGetApplicationResponse(int httpResponseCode, const String &payload)
 {
-    lv_obj_add_flag(ui_GettingInfoPanel, LV_OBJ_FLAG_HIDDEN);
+    if(ui_Bot_Key_Getting_Info_Panel != NULL)
+        lv_obj_add_flag(ui_Bot_Key_Getting_Info_Panel, LV_OBJ_FLAG_HIDDEN);
 
     if (httpResponseCode == 200)
     {
-        writeFile(ApplicationPath, payload);
-
-        if(server && MDNS)
-        {
-            server.end();
-            MDNS.end();
-        }
+        writeFile(ApplicationPath, payload.c_str());
 
         App::onBotApplicationVerified();
     }
     else
     {
-        lv_msgbox_create(NULL, (String("Error", "Unable To Verify Bot Key, Try Set Key Again, Code : ") + httpResponseCode).c_str(), NULL, true);
+        lv_obj_center(lv_msgbox_create(NULL, "Error", (String("Unable To Verify Bot Key, Try Set Key Again, Code : ") + String(httpResponseCode)).c_str(), NULL, true));
     }
 }
