@@ -15,4 +15,4 @@
 
 void beginLvglHelper(LilyGo_Display &board, bool debug = false);
 
-void changeScreen(lv_obj_t ** target, lv_scr_load_anim_t fademode, int spd, int delay, void (*target_init)(void), bool saveAsLastScreen = true);
+void changeScreen(lv_obj_t ** target, lv_scr_load_anim_t fademode, int spd, int delay, void (*target_init)(void));

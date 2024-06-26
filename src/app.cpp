@@ -3,7 +3,6 @@
 #include "app.h"
 
 bool App::IsInSetting = false;
-lv_obj_t *lastScreen = ui_BotKeyScreen;
 
 void App::setup()
 {

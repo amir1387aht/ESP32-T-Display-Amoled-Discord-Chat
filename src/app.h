@@ -20,8 +20,6 @@
 
 #include <ui/ui.h>
 
-extern lv_obj_t *lastScreen;
-
 class App
 {
     public:

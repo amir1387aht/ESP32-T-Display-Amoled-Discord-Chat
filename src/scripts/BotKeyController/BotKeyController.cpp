@@ -8,7 +8,6 @@ IPAddress ip WebServer_IP;
 
 void BotKeyController::start()
 {
-    lastScreen = ui_BotKeyScreen;
     ui_init();
 
     handleBotKeyPage();
