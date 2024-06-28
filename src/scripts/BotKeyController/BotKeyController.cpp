@@ -10,6 +10,8 @@ void BotKeyController::start()
 {
     ui_init();
 
+    changeScreen(&ui_BotKeyScreen);
+
     handleBotKeyPage();
 }
 

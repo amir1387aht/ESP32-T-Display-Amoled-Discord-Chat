@@ -17,6 +17,8 @@ static lv_disp_draw_buf_t draw_buf;
 static lv_disp_drv_t disp_drv;
 static lv_indev_drv_t indev_drv;
 
+lv_obj_t *lastScreen;
+
 /* Display flushing */
 static void disp_flush(lv_disp_drv_t *disp_drv, const lv_area_t *area, lv_color_t *color_p)
 {
@@ -112,7 +114,18 @@ void beginLvglHelper(LilyGo_Display &board, bool debug)
     }
 }
 
-void changeScreen(lv_obj_t ** target, lv_scr_load_anim_t fademode, int spd, int delay, void (*target_init)(void),)
+void changeScreen(lv_obj_t ** target, lv_scr_load_anim_t fademode, int spd, int delay, void (*target_init)(void), bool saveAsLastScreen)
 {
+    if(target == NULL) return;
+
+    if(saveAsLastScreen)
+        lastScreen = *target;
+
     _ui_screen_change(target, fademode, spd, delay, target_init);
+}
+
+void backToLastScreen()
+{
+    if(lastScreen != NULL)
+        _ui_screen_change(&lastScreen, LV_SCR_LOAD_ANIM_FADE_ON, 300, 0, &ui_Setting_Screen_screen_init);
 }

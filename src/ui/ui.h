@@ -33,6 +33,7 @@ extern lv_obj_t * ui_Bot_Key_Getting_Info_Panel_Loading_Text;
 extern lv_obj_t * ui_Bot_Key_Getting_Info_Panel_Loading_Spinner;
 // SCREEN: ui_Setting_Screen
 void ui_Setting_Screen_screen_init(void);
+void ui_event_Setting_Screen(lv_event_t * e);
 extern lv_obj_t * ui_Setting_Screen;
 extern lv_obj_t * ui_Setting_Right_Panel;
 extern lv_obj_t * ui_Setting_Right_Panel_Container;
@@ -59,7 +60,6 @@ extern lv_obj_t * ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle_Panel;
 void ui_event_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle(lv_event_t * e);
 extern lv_obj_t * ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle;
 extern lv_obj_t * ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle_Panel_Label;
-extern lv_obj_t * ui_Setting_Left_Panel_WiFi_Panel_Container;
 extern lv_obj_t * ui_Setting_Left_Panel_Bot_Info_Panel;
 extern lv_obj_t * ui_Setting_Left_Panel_Bot_Info_Panel_Label;
 extern lv_obj_t * ui_Setting_Left_Panel_About_Us_Panel;

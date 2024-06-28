@@ -10,7 +10,7 @@
 extern "C" {
 #endif
 
-void WiFITurnOn(lv_event_t * e);
+void WiFiTurnOn(lv_event_t * e);
 void WiFiTurnOff(lv_event_t * e);
 
 #ifdef __cplusplus

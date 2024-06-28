@@ -29,6 +29,7 @@ lv_obj_t * ui_Bot_Key_Getting_Info_Panel_Loading_Spinner;
 
 // SCREEN: ui_Setting_Screen
 void ui_Setting_Screen_screen_init(void);
+void ui_event_Setting_Screen(lv_event_t * e);
 lv_obj_t * ui_Setting_Screen;
 lv_obj_t * ui_Setting_Right_Panel;
 lv_obj_t * ui_Setting_Right_Panel_Container;
@@ -55,7 +56,6 @@ lv_obj_t * ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle_Panel;
 void ui_event_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle(lv_event_t * e);
 lv_obj_t * ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle;
 lv_obj_t * ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle_Panel_Label;
-lv_obj_t * ui_Setting_Left_Panel_WiFi_Panel_Container;
 lv_obj_t * ui_Setting_Left_Panel_Bot_Info_Panel;
 lv_obj_t * ui_Setting_Left_Panel_Bot_Info_Panel_Label;
 lv_obj_t * ui_Setting_Left_Panel_About_Us_Panel;
@@ -122,6 +122,14 @@ void KeyboardHide_Animation(lv_obj_t * TargetObject, int delay)
 }
 
 ///////////////////// FUNCTIONS ////////////////////
+void ui_event_Setting_Screen(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_screen_delete(&ui_Setting_Screen);
+    }
+}
 void ui_event_Setting_Right_Panel_WiFi_Button(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
@@ -161,11 +169,9 @@ void ui_event_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle(lv_event_t * e)
                                    "Wi-Fi Off");
     }
     if(event_code == LV_EVENT_VALUE_CHANGED &&  lv_obj_has_state(target, LV_STATE_CHECKED)) {
-        _ui_flag_modify(ui_Setting_Left_Panel_WiFi_Panel_Container, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
-        WiFITurnOn(e);
+        WiFiTurnOn(e);
     }
     if(event_code == LV_EVENT_VALUE_CHANGED &&  !lv_obj_has_state(target, LV_STATE_CHECKED)) {
-        _ui_flag_modify(ui_Setting_Left_Panel_WiFi_Panel_Container, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
         WiFiTurnOff(e);
     }
 }

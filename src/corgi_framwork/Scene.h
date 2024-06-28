@@ -24,6 +24,13 @@ public:
     // Function to remove scripts by type tag
     void removeScriptByTypeName(const char *typeTag);
 
+    // Function to get scripts by type tag
+    Script* getScriptByTypeName(const char* typeTag);
+
+    // Function to get scripts by type tag and type
+    template <typename T>
+    T* getScriptByType();
+
     // Function to update all scripts in the scene
     void updateScripts();
 

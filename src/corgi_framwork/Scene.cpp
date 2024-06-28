@@ -23,7 +23,7 @@ void Scene::removeScript(Script *script)
 void Scene::removeScriptByTypeName(const char *typeTag)
 {
     auto it = std::remove_if(scripts.begin(), scripts.end(), [typeTag](Script *script)
-                             { return strcmp(script->getTypeTag(), typeTag) == 0; });
+    { return strcmp(script->getTypeTag(), typeTag) == 0; });
 
     if (it != scripts.end())
     {
@@ -33,6 +33,34 @@ void Scene::removeScriptByTypeName(const char *typeTag)
         }
         scripts.erase(it, scripts.end()); // Remove the scripts from the vector
     }
+}
+
+// Function to get a script by type name
+Script* Scene::getScriptByTypeName(const char *typeTag)
+{
+    auto it = std::find_if(scripts.begin(), scripts.end(), [typeTag](Script *script)
+    { return strcmp(script->getTypeTag(), typeTag) == 0; });
+
+    if (it != scripts.end())
+    {
+        return *it; // Return the script if found
+    }
+    return nullptr; // Return nullptr if no script matches the type name
+}
+
+// Template function to get a script by type
+template <typename T>
+T* Scene::getScriptByType()
+{
+    for (auto script : scripts)
+    {
+        T* castedScript = dynamic_cast<T*>(script);
+        if (castedScript != nullptr)
+        {
+            return castedScript; // Return the script if found and cast to the correct type
+        }
+    }
+    return nullptr; // Return nullptr if no script matches the type
 }
 
 // Function to update all scripts in the scene

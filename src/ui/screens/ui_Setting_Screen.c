@@ -229,7 +229,7 @@ void ui_Setting_Screen_screen_init(void)
 
     ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle_Panel = lv_obj_create(ui_Setting_Left_Panel_WiFi_Panel);
     lv_obj_set_width(ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle_Panel, 302);
-    lv_obj_set_height(ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle_Panel, 37);
+    lv_obj_set_height(ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle_Panel, 40);
     lv_obj_set_x(ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle_Panel, 2);
     lv_obj_set_y(ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle_Panel, 16);
     lv_obj_set_align(ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle_Panel, LV_ALIGN_TOP_MID);
@@ -245,9 +245,9 @@ void ui_Setting_Screen_screen_init(void)
 
     ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle = lv_switch_create(
                                                             ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle_Panel);
-    lv_obj_set_width(ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle, 60);
-    lv_obj_set_height(ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle, 27);
-    lv_obj_set_x(ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle, -10);
+    lv_obj_set_width(ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle, 62);
+    lv_obj_set_height(ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle, 30);
+    lv_obj_set_x(ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle, -13);
     lv_obj_set_y(ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle, 0);
     lv_obj_set_align(ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle, LV_ALIGN_LEFT_MID);
     lv_obj_add_state(ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle, LV_STATE_CHECKED);       /// States
@@ -267,16 +267,6 @@ void ui_Setting_Screen_screen_init(void)
                               LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle_Panel_Label, &ui_font_gg_sans_small,
                                LV_PART_MAIN | LV_STATE_DEFAULT);
-
-    ui_Setting_Left_Panel_WiFi_Panel_Container = lv_obj_create(ui_Setting_Left_Panel_WiFi_Panel);
-    lv_obj_remove_style_all(ui_Setting_Left_Panel_WiFi_Panel_Container);
-    lv_obj_set_height(ui_Setting_Left_Panel_WiFi_Panel_Container, 150);
-    lv_obj_set_width(ui_Setting_Left_Panel_WiFi_Panel_Container, lv_pct(110));
-    lv_obj_set_x(ui_Setting_Left_Panel_WiFi_Panel_Container, 0);
-    lv_obj_set_y(ui_Setting_Left_Panel_WiFi_Panel_Container, 40);
-    lv_obj_set_align(ui_Setting_Left_Panel_WiFi_Panel_Container, LV_ALIGN_CENTER);
-    lv_obj_clear_flag(ui_Setting_Left_Panel_WiFi_Panel_Container,
-                      LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
     ui_Setting_Left_Panel_Bot_Info_Panel = lv_obj_create(ui_Setting_Left_Panel);
     lv_obj_set_width(ui_Setting_Left_Panel_Bot_Info_Panel, lv_pct(110));
@@ -342,5 +332,6 @@ void ui_Setting_Screen_screen_init(void)
     lv_obj_add_event_cb(ui_Setting_Right_Panel_Info_Button, ui_event_Setting_Right_Panel_Info_Button, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle,
                         ui_event_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_Setting_Screen, ui_event_Setting_Screen, LV_EVENT_ALL, NULL);
 
 }

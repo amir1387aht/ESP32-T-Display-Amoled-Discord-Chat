@@ -61,10 +61,8 @@ void App::onBotApplicationVerified()
 
 void App::homeButtonPressed()
 {
-    App::IsInSetting = !App::IsInSetting;
-
-    if (App::IsInSetting)
-        SceneManager::currentScene->addScript(new SettingController);
+    if (App::IsInSetting = !App::IsInSetting)
+        SceneManager::currentScene->addScript(new SettingController());
     else
         SceneManager::currentScene->removeScriptByTypeName("SettingController");
 }
