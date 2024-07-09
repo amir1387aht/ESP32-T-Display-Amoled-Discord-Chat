@@ -1,6 +1,6 @@
 #include <scripts/SettingController/SettingController.h>
 
-Ticker SettingController::WiFiUpdateTicker(UpdateWiFiAPs, 0, 1);
+SettingController* SettingController::instance = nullptr;
 
 void SettingController::start()
 {
@@ -19,9 +19,8 @@ SettingController::~SettingController()
     backToLastScreen();
 }
 
-SettingController::SettingController()
-{
-    backToLastScreen();
+SettingController::SettingController() : WiFiUpdateTicker(UpdateWiFiAPsWrapper, 1000) {
+    instance = this;
 }
 
 void SettingController::UpdateWiFiSetting()
@@ -39,6 +38,12 @@ void SettingController::UpdateWiFiSetting()
     WiFiUpdateTicker.start();
 }
 
+void SettingController::UpdateWiFiAPsWrapper() {
+    if (instance) {
+        instance->UpdateWiFiAPs();
+    }
+}
+
 void SettingController::UpdateWiFiAPs()
 {
     Serial.println("Hello");
@@ -47,9 +52,15 @@ void SettingController::UpdateWiFiAPs()
 void SettingController::WiFiTurnedOn()
 {
     _ui_flag_modify(ui_Setting_Left_Panel_WiFi_Panel_Container, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
+
+    WiFiUpdateTicker.start();
+
+    HTTP_helper::begin();
 }
 
 void SettingController::WiFiTurnedOff()
 {
     _ui_flag_modify(ui_Setting_Left_Panel_WiFi_Panel_Container, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+
+    HTTP_helper::disconnectWiFi();
 }

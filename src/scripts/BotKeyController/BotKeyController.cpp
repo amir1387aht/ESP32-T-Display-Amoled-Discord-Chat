@@ -101,6 +101,6 @@ void BotKeyController::handleGetApplicationResponse(int httpResponseCode, const 
     }
     else
     {
-        lv_obj_center(lv_msgbox_create(NULL, "Error", (String("Unable To Verify Bot Key, Try Set Key Again, Code : ") + String(httpResponseCode)).c_str(), NULL, true));
+        lv_obj_center(lv_msgbox_create(NULL, "Error", "Unable To Verify Bot Key, Try Set Key Again, Check Your Internet Connection And Try Again.", NULL, true));
     }
 }

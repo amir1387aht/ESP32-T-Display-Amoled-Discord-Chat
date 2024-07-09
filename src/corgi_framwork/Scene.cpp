@@ -48,21 +48,6 @@ Script* Scene::getScriptByTypeName(const char *typeTag)
     return nullptr; // Return nullptr if no script matches the type name
 }
 
-// Template function to get a script by type
-template <typename T>
-T* Scene::getScriptByType()
-{
-    for (auto script : scripts)
-    {
-        T* castedScript = dynamic_cast<T*>(script);
-        if (castedScript != nullptr)
-        {
-            return castedScript; // Return the script if found and cast to the correct type
-        }
-    }
-    return nullptr; // Return nullptr if no script matches the type
-}
-
 // Function to update all scripts in the scene
 void Scene::updateScripts()
 {

@@ -4,7 +4,8 @@
 #define SCRIPT_H
 
 #define DEFINE_TYPE_TAG(className) \
-    virtual const char *getTypeTag() const override { return #className; }
+    static const char* TypeTag() { return #className; } \
+    virtual const char* getTypeTag() const override { return #className; }
 
 class Script
 {

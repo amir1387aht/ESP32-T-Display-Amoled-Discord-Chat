@@ -6,6 +6,7 @@
 #include <scripts/SettingController/SettingController.h>
 #include <corgi_framwork/SceneManager.h>
 #include <corgi_framwork/Script.h>
+#include <corgi_framwork/Scene.h>
 
 void WiFiTurnOn(lv_event_t * e)
 {

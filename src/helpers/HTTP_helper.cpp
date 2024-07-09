@@ -2,7 +2,6 @@
 
 void HTTP_helper::begin()
 {
-    // Connect Automatically To WiFi
     WiFi.mode(WIFI_STA);
 
     wifi_config_t current_conf;
@@ -10,26 +9,18 @@ void HTTP_helper::begin()
     esp_wifi_get_config(WIFI_IF_STA, &current_conf);
 
     if (strlen((const char *)current_conf.sta.ssid) != 0)
-    {
         WiFi.begin();
-        Serial.println(String("Connecting To WiFi with SSID : ") + String((const char *)current_conf.sta.ssid));
-    }
 }
 
 void HTTP_helper::connectWiFi(const char *ssid, const char *password)
 {
     WiFi.begin(ssid, password);
+}
 
-    Serial.print("Connecting to WiFi...");
-
-    while (WiFi.status() != WL_CONNECTED)
-    {
-        delay(1000);
-        Serial.print(".");
-    }
-
-    Serial.println();
-    Serial.println("Connected to WiFi");
+void HTTP_helper::disconnectWiFi()
+{
+    WiFi.disconnect(true);
+    WiFi.mode(WIFI_OFF);
 }
 
 void HTTP_helper::handleResponse(int httpResponseCode, const String &payload, ResponseCallback callback)
@@ -37,13 +28,6 @@ void HTTP_helper::handleResponse(int httpResponseCode, const String &payload, Re
     if (callback)
     {
         callback(httpResponseCode, payload);
-    }
-    else
-    {
-        Serial.print("HTTP Response Code: ");
-        Serial.println(httpResponseCode);
-        Serial.println("Response Payload: ");
-        Serial.println(payload);
     }
 }
 

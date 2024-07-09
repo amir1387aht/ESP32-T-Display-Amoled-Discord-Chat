@@ -27,6 +27,7 @@ public:
     static void del(String url, ResponseCallback callback, const std::vector<Header> &headers = {});
 
     static void connectWiFi(const char *ssid, const char *password);
+    static void disconnectWiFi();
 
 private:
     static void handleResponse(int httpResponseCode, const String &payload, ResponseCallback callback);

@@ -43,4 +43,18 @@ public:
     }
 };
 
+// Template function to get a script by type
+template <typename T>
+T* Scene::getScriptByType()
+{
+    for (auto script : scripts)
+    {
+        if (strcmp(script->getTypeTag(), T::TypeTag()) == 0)
+        {
+            return static_cast<T*>(script); // Use static_cast
+        }
+    }
+    return nullptr; // Return nullptr if no script matches the type
+}
+
 #endif // SCENE_H
