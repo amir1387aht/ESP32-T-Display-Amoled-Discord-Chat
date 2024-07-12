@@ -2,71 +2,177 @@
 // SquareLine Studio version: SquareLine Studio 1.4.0
 // LVGL version: 8.3.11
 // Project name: Discord Login
-
 #include "ui/ui.h"
 #include "ui/ui_helpers.h"
 
 ///////////////////// VARIABLES ////////////////////
+void KeyboardShow_Animation(lv_obj_t * TargetObject, int delay);
+void KeyboardHide_Animation(lv_obj_t * TargetObject, int delay);
 
-// SCREEN: ui_LoginScreen
-void ui_LoginScreen_screen_init(void);
-lv_obj_t *ui_LoginScreen;
-lv_obj_t *ui_Header_Panel;
-lv_obj_t *ui_Header_Text;
-lv_obj_t *ui_Discord_Icon;
-lv_obj_t *ui_CredentialsForm;
-lv_obj_t *ui_EmailOrPhoneInput;
-lv_obj_t *ui_Label;
-lv_obj_t *ui_Required_Label;
-void ui_event_TextArea(lv_event_t *e);
-lv_obj_t *ui_TextArea;
-lv_obj_t *ui_PassworInput;
-lv_obj_t *ui_Label1;
-lv_obj_t *ui_Required_Label1;
-void ui_event_TextArea1(lv_event_t *e);
-lv_obj_t *ui_TextArea1;
-void ui_event_Forgot_Password_Button(lv_event_t *e);
-lv_obj_t *ui_Forgot_Password_Button;
-lv_obj_t *ui_Forgot_Password;
-void ui_event_ButtonSend(lv_event_t *e);
-lv_obj_t *ui_ButtonSend;
-lv_obj_t *ui_Label3;
-lv_obj_t *ui____initial_actions0;
-static lv_obj_t *kb;
+
+// SCREEN: ui_BotKeyScreen
+void ui_BotKeyScreen_screen_init(void);
+lv_obj_t * ui_BotKeyScreen;
+lv_obj_t * ui_Bot_Key_Right_Panel;
+lv_obj_t * ui_Bot_Key_Right_Panel_QrCode;
+lv_obj_t * ui_Bot_Key_Left_Panel;
+lv_obj_t * ui_Bot_Key_Left_Panel_Header_Text;
+lv_obj_t * ui_Bot_Key_Left_Panel_Discord_Icon;
+lv_obj_t * ui_Bot_Key_Left_Panel_Info_Text;
+lv_obj_t * ui_Bot_Key_Left_Panel_Text_1;
+lv_obj_t * ui_Bot_Key_Left_Panel_Text_2;
+lv_obj_t * ui_Bot_Key_Left_Panel_Text_3;
+lv_obj_t * ui_Bot_Key_Getting_Info_Panel;
+lv_obj_t * ui_Bot_Key_Getting_Info_Panel_Loading_Text;
+lv_obj_t * ui_Bot_Key_Getting_Info_Panel_Loading_Spinner;
+
+
+// SCREEN: ui_Setting_Screen
+void ui_Setting_Screen_screen_init(void);
+void ui_event_Setting_Screen(lv_event_t * e);
+lv_obj_t * ui_Setting_Screen;
+lv_obj_t * ui_Setting_Right_Panel;
+lv_obj_t * ui_Setting_Right_Panel_Container;
+lv_obj_t * ui_Setting_Right_Panel_Header_Label;
+void ui_event_Setting_Right_Panel_WiFi_Button(lv_event_t * e);
+lv_obj_t * ui_Setting_Right_Panel_WiFi_Button;
+lv_obj_t * ui_Setting_Right_Panel_WiFi_Button_Icon;
+lv_obj_t * ui_Setting_Right_Panel_WiFi_Button_Label;
+lv_obj_t * ui_Setting_Right_Panel_WiFi_Button_Description_Label;
+void ui_event_Setting_Right_Panel_Bot_Info_Button(lv_event_t * e);
+lv_obj_t * ui_Setting_Right_Panel_Bot_Info_Button;
+lv_obj_t * ui_Setting_Right_Panel_Bot_Info_Button_Icon;
+lv_obj_t * ui_Setting_Right_Panel_Bot_Info_Button_Label;
+lv_obj_t * ui_Setting_Right_Panel_Bot_Info_Button_Description_Label;
+void ui_event_Setting_Right_Panel_Info_Button(lv_event_t * e);
+lv_obj_t * ui_Setting_Right_Panel_Info_Button;
+lv_obj_t * ui_Setting_Right_Panel_Info_Button_Icon;
+lv_obj_t * ui_Setting_Right_Panel_Info_Button_Label;
+lv_obj_t * ui_Setting_Right_Panel_Info_Button_Description_Label;
+lv_obj_t * ui_Setting_Left_Panel;
+lv_obj_t * ui_Setting_Left_Panel_WiFi_Panel;
+lv_obj_t * ui_Setting_Left_Panel_WiFi_Panel_Label;
+lv_obj_t * ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle_Panel;
+void ui_event_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle(lv_event_t * e);
+lv_obj_t * ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle;
+lv_obj_t * ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle_Panel_Label;
+lv_obj_t * ui_Setting_Left_Panel_Bot_Info_Panel;
+lv_obj_t * ui_Setting_Left_Panel_Bot_Info_Panel_Label;
+lv_obj_t * ui_Setting_Left_Panel_About_Us_Panel;
+lv_obj_t * ui_Setting_Left_Panel_About_Us_Panel_Label;
+lv_obj_t * ui_Setting_Keyboard;
+lv_obj_t * ui____initial_actions0;
+const lv_img_dsc_t * ui_imgset_921444870[1] = {&ui_img_2024208504};
+const lv_img_dsc_t * ui_imgset_669023637[1] = {&ui_img_1746740777};
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
 #if LV_COLOR_DEPTH != 16
-#error "LV_COLOR_DEPTH should be 16bit to match SquareLine Studio's settings"
+    #error "LV_COLOR_DEPTH should be 16bit to match SquareLine Studio's settings"
 #endif
-#if LV_COLOR_16_SWAP != 1
-#error "LV_COLOR_16_SWAP should be 1 to match SquareLine Studio's settings"
+#if LV_COLOR_16_SWAP !=1
+    #error "LV_COLOR_16_SWAP should be 1 to match SquareLine Studio's settings"
 #endif
 
 ///////////////////// ANIMATIONS ////////////////////
+void KeyboardShow_Animation(lv_obj_t * TargetObject, int delay)
+{
+    ui_anim_user_data_t * PropertyAnimation_0_user_data = lv_mem_alloc(sizeof(ui_anim_user_data_t));
+    PropertyAnimation_0_user_data->target = TargetObject;
+    PropertyAnimation_0_user_data->val = -1;
+    lv_anim_t PropertyAnimation_0;
+    lv_anim_init(&PropertyAnimation_0);
+    lv_anim_set_time(&PropertyAnimation_0, 300);
+    lv_anim_set_user_data(&PropertyAnimation_0, PropertyAnimation_0_user_data);
+    lv_anim_set_custom_exec_cb(&PropertyAnimation_0, _ui_anim_callback_set_y);
+    lv_anim_set_values(&PropertyAnimation_0, -150, -300);
+    lv_anim_set_path_cb(&PropertyAnimation_0, lv_anim_path_linear);
+    lv_anim_set_delay(&PropertyAnimation_0, delay + 0);
+    lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
+    lv_anim_set_playback_time(&PropertyAnimation_0, 0);
+    lv_anim_set_playback_delay(&PropertyAnimation_0, 0);
+    lv_anim_set_repeat_count(&PropertyAnimation_0, 0);
+    lv_anim_set_repeat_delay(&PropertyAnimation_0, 0);
+    lv_anim_set_early_apply(&PropertyAnimation_0, false);
+    lv_anim_set_get_value_cb(&PropertyAnimation_0, &_ui_anim_callback_get_y);
+    lv_anim_start(&PropertyAnimation_0);
+
+}
+void KeyboardHide_Animation(lv_obj_t * TargetObject, int delay)
+{
+    ui_anim_user_data_t * PropertyAnimation_0_user_data = lv_mem_alloc(sizeof(ui_anim_user_data_t));
+    PropertyAnimation_0_user_data->target = TargetObject;
+    PropertyAnimation_0_user_data->val = -1;
+    lv_anim_t PropertyAnimation_0;
+    lv_anim_init(&PropertyAnimation_0);
+    lv_anim_set_time(&PropertyAnimation_0, 300);
+    lv_anim_set_user_data(&PropertyAnimation_0, PropertyAnimation_0_user_data);
+    lv_anim_set_custom_exec_cb(&PropertyAnimation_0, _ui_anim_callback_set_y);
+    lv_anim_set_values(&PropertyAnimation_0, -150, 0);
+    lv_anim_set_path_cb(&PropertyAnimation_0, lv_anim_path_linear);
+    lv_anim_set_delay(&PropertyAnimation_0, delay + 0);
+    lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
+    lv_anim_set_playback_time(&PropertyAnimation_0, 0);
+    lv_anim_set_playback_delay(&PropertyAnimation_0, 0);
+    lv_anim_set_repeat_count(&PropertyAnimation_0, 0);
+    lv_anim_set_repeat_delay(&PropertyAnimation_0, 0);
+    lv_anim_set_early_apply(&PropertyAnimation_0, false);
+    lv_anim_set_get_value_cb(&PropertyAnimation_0, &_ui_anim_callback_get_y);
+    lv_anim_start(&PropertyAnimation_0);
+
+}
 
 ///////////////////// FUNCTIONS ////////////////////
-void ui_event_TextArea(lv_event_t *e)
-{
-    LoadKeyboard(e);
-}
-
-void ui_event_Forgot_Password_Button(lv_event_t *e)
+void ui_event_Setting_Screen(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t *target = lv_event_get_target(e);
-    if (event_code == LV_EVENT_CLICKED)
-    {
-        ForgotPassword(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_screen_delete(&ui_Setting_Screen);
     }
 }
-
-void ui_event_ButtonSend(lv_event_t *e)
+void ui_event_Setting_Right_Panel_WiFi_Button(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t *target = lv_event_get_target(e);
-    if (event_code == LV_EVENT_CLICKED)
-    {
-        SendForm(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_flag_modify(ui_Setting_Left_Panel_About_Us_Panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+        _ui_flag_modify(ui_Setting_Left_Panel_Bot_Info_Panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+        _ui_flag_modify(ui_Setting_Left_Panel_WiFi_Panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
+    }
+}
+void ui_event_Setting_Right_Panel_Bot_Info_Button(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_flag_modify(ui_Setting_Left_Panel_About_Us_Panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+        _ui_flag_modify(ui_Setting_Left_Panel_Bot_Info_Panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
+        _ui_flag_modify(ui_Setting_Left_Panel_WiFi_Panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+    }
+}
+void ui_event_Setting_Right_Panel_Info_Button(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_flag_modify(ui_Setting_Left_Panel_About_Us_Panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
+        _ui_flag_modify(ui_Setting_Left_Panel_Bot_Info_Panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+        _ui_flag_modify(ui_Setting_Left_Panel_WiFi_Panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+    }
+}
+void ui_event_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_VALUE_CHANGED) {
+        _ui_checked_set_text_value(ui_Setting_Left_Panel_WiFi_Panel_On_Or_Off_Toggle_Panel_Label, target, "Wi-Fi On",
+                                   "Wi-Fi Off");
+    }
+    if(event_code == LV_EVENT_VALUE_CHANGED &&  lv_obj_has_state(target, LV_STATE_CHECKED)) {
+        WiFiTurnOn(e);
+    }
+    if(event_code == LV_EVENT_VALUE_CHANGED &&  !lv_obj_has_state(target, LV_STATE_CHECKED)) {
+        WiFiTurnOff(e);
     }
 }
 
@@ -74,11 +180,12 @@ void ui_event_ButtonSend(lv_event_t *e)
 
 void ui_init(void)
 {
-    lv_disp_t *dispp = lv_disp_get_default();
-    lv_theme_t *theme = lv_theme_default_init(dispp, lv_palette_main(LV_PALETTE_BLUE), lv_palette_main(LV_PALETTE_RED), false, LV_FONT_DEFAULT);
+    lv_disp_t * dispp = lv_disp_get_default();
+    lv_theme_t * theme = lv_theme_default_init(dispp, lv_palette_main(LV_PALETTE_BLUE), lv_palette_main(LV_PALETTE_RED),
+                                               false, LV_FONT_DEFAULT);
     lv_disp_set_theme(dispp, theme);
-
-    ui_LoginScreen_screen_init();
+    ui_BotKeyScreen_screen_init();
+    ui_Setting_Screen_screen_init();
     ui____initial_actions0 = lv_obj_create(NULL);
-    lv_disp_load_scr(ui_LoginScreen);
+    lv_disp_load_scr(ui_BotKeyScreen);
 }

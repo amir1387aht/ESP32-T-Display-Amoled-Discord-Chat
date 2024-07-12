@@ -1,9 +1,9 @@
 // SceneManager.cpp
 
 #include "corgi_framwork/SceneManager.h"
-#include "app.h"
 
 Scene *SceneManager::currentScene = nullptr;
+App *app = new App();
 
 void SceneManager::switchScene(Scene *newScene)
 {
@@ -17,14 +17,13 @@ void SceneManager::switchScene(Scene *newScene)
 
 void SceneManager::setup()
 {
-    // Call setup function for App file
-    App::setupScenes();
+    app->setup();
 }
 
 void SceneManager::loop()
 {
+    app->update();
+
     if (currentScene != nullptr)
-    {
         currentScene->updateScripts(); // Update the current scene's scripts
-    }
 }

@@ -1,13 +1,74 @@
-// This is main file for defining and adding scenes.
-// only Setup function os enough for creating Scenes, you should put your app behavior on scripts folder.
+// app.cpp
 
 #include "app.h"
 
-void App::setupScenes()
+bool App::IsInSetting = false;
+
+void App::setup()
 {
-    Scene *LoginScene = new Scene("LoginScene");
+    Serial.begin(115200);
 
-    SceneManager::switchScene(LoginScene);
+    SPIFFS_init();
+    
+    HTTP_helper::begin();
 
-    LoginScene->addScript(new LoginController());
+    setupDisplay();
+
+    loadScene();
+
+    amoled.setHomeButtonCallback([](void *ptr)
+    {
+        static uint32_t checkMs = 0;
+
+        if (millis() > checkMs) 
+            App::homeButtonPressed();
+
+        checkMs = millis() + 200; 
+    }, NULL);
+}
+
+void App::setupDisplay()
+{
+    amoled.beginAMOLED_191();
+
+    beginLvglHelper(amoled);
+}
+
+void App::loadScene()
+{
+    if (!fileExists(KeyPath))
+    {
+        Scene *currentScene = new Scene("BotKeyScene");
+
+        SceneManager::switchScene(currentScene);
+
+        currentScene->addScript(new BotKeyController);
+    }
+    else
+    {
+        BotKeyController::onBotKeyEntered(readFile(KeyPath));
+    }
+}
+
+void App::onBotApplicationVerified()
+{
+    Scene *currentScene = new Scene("ChatScene");
+
+    SceneManager::switchScene(currentScene);
+
+    currentScene->addScript(new ChatController);
+}
+
+void App::homeButtonPressed()
+{
+    if (App::IsInSetting = !App::IsInSetting)
+        SceneManager::currentScene->addScript(new SettingController());
+    else
+        SceneManager::currentScene->removeScriptByTypeName("SettingController");
+}
+
+void App::update()
+{
+    lv_task_handler();
+    delay(5);
 }

@@ -10,9 +10,8 @@
 extern "C" {
 #endif
 
-void LoadKeyboard(lv_event_t * e);
-void ForgotPassword(lv_event_t * e);
-void SendForm(lv_event_t * e);
+void WiFiTurnOn(lv_event_t * e);
+void WiFiTurnOff(lv_event_t * e);
 
 #ifdef __cplusplus
 } /*extern "C"*/

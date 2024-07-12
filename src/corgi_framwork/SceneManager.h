@@ -4,6 +4,7 @@
 #define SCENE_MANAGER_H
 
 #include <corgi_framwork/Scene.h>
+#include "app.h"
 
 class SceneManager
 {

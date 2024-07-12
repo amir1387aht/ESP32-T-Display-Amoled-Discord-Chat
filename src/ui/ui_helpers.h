@@ -9,7 +9,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 #include "ui/ui.h"
 
 #define _UI_TEMPORARY_STRING_BUFFER_SIZE 32

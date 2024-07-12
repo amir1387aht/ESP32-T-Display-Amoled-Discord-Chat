@@ -1,0 +1,9 @@
+D:/Arduino Project/ESP32-T-Display-Amoled-Discord-Chat/build/CMakeFiles/lvgl.dir
+D:/Arduino Project/ESP32-T-Display-Amoled-Discord-Chat/build/CMakeFiles/lvgl_examples.dir
+D:/Arduino Project/ESP32-T-Display-Amoled-Discord-Chat/build/CMakeFiles/lvgl_demos.dir
+D:/Arduino Project/ESP32-T-Display-Amoled-Discord-Chat/build/CMakeFiles/edit_cache.dir
+D:/Arduino Project/ESP32-T-Display-Amoled-Discord-Chat/build/CMakeFiles/rebuild_cache.dir
+D:/Arduino Project/ESP32-T-Display-Amoled-Discord-Chat/build/CMakeFiles/list_install_components.dir
+D:/Arduino Project/ESP32-T-Display-Amoled-Discord-Chat/build/CMakeFiles/install.dir
+D:/Arduino Project/ESP32-T-Display-Amoled-Discord-Chat/build/CMakeFiles/install/local.dir
+D:/Arduino Project/ESP32-T-Display-Amoled-Discord-Chat/build/CMakeFiles/install/strip.dir

@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-175d56fdd9d562c0fcfb.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12.4"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "lvgl",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "lvgl::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-lvgl-Debug-9e05dae959bcc35de371.json",
+					"name" : "lvgl",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "lvgl_demos::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-lvgl_demos-Debug-324ac320a85b1ea43f0c.json",
+					"name" : "lvgl_demos",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "lvgl_examples::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-lvgl_examples-Debug-f200dcc64cd30a1b3fc0.json",
+					"name" : "lvgl_examples",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/Arduino Project/ESP32-T-Display-Amoled-Discord-Chat/build",
+		"source" : "D:/Arduino Project/ESP32-T-Display-Amoled-Discord-Chat/.pio/libdeps/T-Display-AMOLED/lvgl"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

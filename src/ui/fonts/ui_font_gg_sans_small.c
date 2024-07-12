@@ -3,7 +3,6 @@
  * Bpp: 8
  * Opts: --bpp 8 --size 12 --font D:/Projects/SquarLine/Disocrd Chat Login - Rotated/assets/ggsans-Bold.ttf -o D:/Projects/SquarLine/Disocrd Chat Login - Rotated/assets\ui_font_gg_sans_small.c --format lvgl -r 0x20-0xff --no-compress --no-prefilter
  ******************************************************************************/
-
 #include "ui/ui.h"
 
 #ifndef UI_FONT_GG_SANS_SMALL
