@@ -59,7 +59,9 @@ lv_obj_t *lv_msgbox_create(lv_obj_t *parent, const char *title, const char *txt,
                            bool add_close_btn)
 {
     LV_LOG_INFO("begin");
+
     bool auto_parent = false;
+
     if (parent == NULL)
     {
         auto_parent = true;
@@ -68,14 +70,22 @@ lv_obj_t *lv_msgbox_create(lv_obj_t *parent, const char *title, const char *txt,
         lv_obj_class_init_obj(parent);
         lv_obj_clear_flag(parent, LV_OBJ_FLAG_IGNORE_LAYOUT);
         lv_obj_set_size(parent, LV_PCT(100), LV_PCT(100));
+        lv_obj_set_style_bg_color(parent, lv_color_hex(0x3C3B3C), LV_PART_MAIN | LV_STATE_DEFAULT);
     }
 
     lv_obj_t *obj = lv_obj_class_create_obj(&lv_msgbox_class, parent);
+
     LV_ASSERT_MALLOC(obj);
+
     if (obj == NULL)
         return NULL;
+
     lv_obj_class_init_obj(obj);
+
     lv_msgbox_t *mbox = (lv_msgbox_t *)obj;
+
+    lv_obj_set_style_bg_color(obj, lv_color_hex(0x313338), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_color(obj, lv_color_hex(0x1E1F22), LV_PART_MAIN | LV_STATE_DEFAULT);
 
     if (auto_parent)
         lv_obj_add_flag(obj, LV_MSGBOX_FLAG_AUTO_PARENT);
@@ -88,8 +98,13 @@ lv_obj_t *lv_msgbox_create(lv_obj_t *parent, const char *title, const char *txt,
     if (add_close_btn || has_title)
     {
         mbox->title = lv_label_create(obj);
+
         lv_label_set_text(mbox->title, has_title ? title : "");
+
         lv_label_set_long_mode(mbox->title, LV_LABEL_LONG_SCROLL_CIRCULAR);
+
+        lv_obj_set_style_text_color(mbox->title, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+
         if (add_close_btn)
             lv_obj_set_flex_grow(mbox->title, 1);
         else
@@ -101,27 +116,38 @@ lv_obj_t *lv_msgbox_create(lv_obj_t *parent, const char *title, const char *txt,
         mbox->close_btn = lv_btn_create(obj);
         lv_obj_set_ext_click_area(mbox->close_btn, LV_DPX(10));
         lv_obj_add_event_cb(mbox->close_btn, msgbox_close_click_event_cb, LV_EVENT_CLICKED, NULL);
+        lv_obj_set_style_shadow_opa(mbox->close_btn, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+
         lv_obj_t *label = lv_label_create(mbox->close_btn);
         lv_label_set_text(label, LV_SYMBOL_CLOSE);
+        lv_obj_set_style_text_color(label, lv_color_hex(0x313338), LV_PART_MAIN | LV_STATE_DEFAULT);
+
         const lv_font_t *font = lv_obj_get_style_text_font(mbox->close_btn, LV_PART_MAIN);
+
         lv_coord_t close_btn_size = lv_font_get_line_height(font) + LV_DPX(10);
         lv_obj_set_size(mbox->close_btn, close_btn_size, close_btn_size);
         lv_obj_align(label, LV_ALIGN_CENTER, 0, 0);
+        lv_obj_set_style_bg_color(mbox->close_btn, lv_color_hex(0x1E1F22), LV_PART_MAIN | LV_STATE_DEFAULT);
     }
 
     mbox->content = lv_obj_class_create_obj(&lv_msgbox_content_class, obj);
+
     LV_ASSERT_MALLOC(mbox->content);
+
     if (mbox->content == NULL)
         return NULL;
+
     lv_obj_class_init_obj(mbox->content);
 
     bool has_txt = txt && strlen(txt) > 0;
+
     if (has_txt)
     {
         mbox->text = lv_label_create(mbox->content);
         lv_label_set_text(mbox->text, txt);
         lv_label_set_long_mode(mbox->text, LV_LABEL_LONG_WRAP);
         lv_obj_set_width(mbox->text, lv_pct(100));
+        lv_obj_set_style_text_color(mbox->text, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
     }
 
     if (btn_txts)
